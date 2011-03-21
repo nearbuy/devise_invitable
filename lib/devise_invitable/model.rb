@@ -22,7 +22,7 @@ module Devise
       extend ActiveSupport::Concern
 
       included do
-        belongs_to :invited_by, :polymorphic => true
+        belongs_to :invited_by, self.to_s, :required => false
       end
 
       # Accept an invitation by clearing invitation token and confirming it if model
