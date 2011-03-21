@@ -22,7 +22,7 @@ class Devise::InvitationsController < ApplicationController
         current_inviter.decrement!(:invitation_limit)
       end
       set_flash_message :notice, :send_instructions, :email => self.resource.email
-      redirect_to after_sign_in_path_for(resource_name)
+      redirect_to after_update_path_for(resource_name)
     else
       render_with_scope :new
     end
@@ -58,7 +58,7 @@ class Devise::InvitationsController < ApplicationController
   def has_invitations_left?
     unless current_inviter.nil? || current_inviter.has_invitations_left?
       build_resource
-      set_flash_message :alert, :no_invitations_remaining 
+      set_flash_message :alert, :no_invitations_remaining
       render_with_scope :new
     end
   end
