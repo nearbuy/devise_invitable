@@ -24,8 +24,8 @@ module Devise
       attr_accessor :skip_invitation
 
       included do
-        include ::DeviseInvitable::Inviter        
-        belongs_to :invited_by, :polymorphic => true
+        include ::DeviseInvitable::Inviter
+        belongs_to :invited_by, self.to_s, :required => false
         
         include ActiveSupport::Callbacks
         define_callbacks :invitation_accepted
